@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    /* Samridhi Theme: Orange 60%, Blue 30%, White 10% */
+    --color-brand-orange: #E85D04;
+    --color-brand-orange-light: #F48C06;
+    --color-brand-orange-dark: #D35400;
+    --color-brand-blue: #1E3A8A;
+    --color-brand-blue-light: #2563EB;
+    --color-brand-blue-dark: #1D4ED8;
+    --color-brand-white: #FFFFFF;
+    --color-brand-offwhite: #F8FAFC;
+    --font-sans: 'DM Sans', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Scroll-triggered animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animate-fade-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee 30s linear infinite;
+    display: flex;
+    width: max-content;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
