@@ -22,3 +22,5 @@ php artisan key:generate
 php artisan migrate --force
 php artisan db:seed --force
 ```
+
+Or visit **`/api/setup`** to run migrations, seeding, and key generation in one go (works before DB tables exist).
