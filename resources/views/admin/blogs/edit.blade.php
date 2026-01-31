@@ -74,26 +74,22 @@
     </div>
 </form>
 
-@push('scripts')
+@push('head-scripts')
 <script src="https://cdn.ckeditor.com/4.23.0/full/ckeditor.js"></script>
+@endpush
+
+@push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    CKEDITOR.replace('content', {
-        filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',
-        filebrowserUploadMethod: 'form',
-        height: 400,
-        toolbar: [
-            { name: 'document', items: ['Source'] },
-            { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-            { name: 'editing', items: ['Find', 'Replace'] },
-            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-            { name: 'links', items: ['Link', 'Unlink'] },
-            { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
-            { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
-            { name: 'colors', items: ['TextColor', 'BGColor'] }
-        ]
-    });
+    if (typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('content', {
+            height: 400,
+            filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',
+            filebrowserUploadMethod: 'form',
+            filebrowserImageUploadUrl: '{{ route("admin.ckeditor.upload") }}',
+            toolbar: 'Full'
+        });
+    }
 });
 </script>
 @endpush

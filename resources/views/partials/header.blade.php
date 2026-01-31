@@ -6,7 +6,6 @@
             </a>
 
             <nav class="hidden xl:flex items-center gap-1">
-                <a href="{{ route('home') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5">Home</a>
 
                 <div class="dropdown relative">
                     <a href="{{ route('about', 'overview') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5 flex items-center gap-1">
