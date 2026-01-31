@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'setup.token' => \App\Http\Middleware\SetupTokenMiddleware::class,
         ]);
         $middleware->validateCsrfTokens(except: [
             'admin/ckeditor/upload',

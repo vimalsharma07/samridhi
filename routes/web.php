@@ -5,7 +5,12 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SetupController;
 use Illuminate\Support\Facades\Route;
+
+// Setup route: runs migrate, db:seed, key:generate (if needed)
+// Local: just visit /setup | Production: add SETUP_TOKEN to .env and use /setup?token=YOUR_SECRET
+Route::get('/setup', [SetupController::class, 'run'])->middleware('setup.token')->name('setup');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about/{page?}', [HomeController::class, 'about'])->name('about')->defaults('page', 'overview');
