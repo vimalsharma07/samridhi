@@ -32,8 +32,46 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="h-64 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #1E3A8A15 0%, #E85D0415 100%);">
-                        <span class="text-6xl font-bold text-[#1E3A8A]/20">SP</span>
+                    <div class="h-64 rounded-2xl">
+                        @if($product['id'] === 'hr-pipes')
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 h-full">
+                                <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+                                    <img src="{{ asset('images/hr-pipes-1.png') }}" alt="Shiny round steel pipes" class="w-full h-full object-cover">
+                                </div>
+                                <div class="rounded-xl overflow-hidden shadow-sm bg-white">
+                                    <img src="{{ asset('images/hr-pipes-2.png') }}" alt="Square hollow section HR pipes" class="w-full h-full object-cover">
+                                </div>
+                                <div class="rounded-xl overflow-hidden shadow-sm bg-white hidden md:block">
+                                    <img src="{{ asset('images/hr-pipes-3.png') }}" alt="Stacked HR pipes in yard" class="w-full h-full object-cover">
+                                </div>
+                                <div class="rounded-xl overflow-hidden shadow-sm bg-white hidden md:block">
+                                    <img src="{{ asset('images/hr-pipes-4.png') }}" alt="Heavy duty HR pipes bundle" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        @else
+                            @php
+                                // Use local steel / pipe imagery so visuals always match the product theme
+                                $productImages = [
+                                    'gi-pipes'     => 'images/hr-pipes-2.png',
+                                    'gp-pipes'     => 'images/hr-pipes-1.png',
+                                    'cr-pipes'     => 'images/hr-pipes-3.png',
+                                    'coils'        => 'images/hr-pipes-4.png',
+                                    'scaffolding'  => 'images/hr-pipes-2.png',
+                                    'billets'      => 'images/hr-pipes-3.png',
+                                ];
+                                $imgPath = $productImages[$product['id']] ?? null;
+                            @endphp
+
+                            @if($imgPath)
+                                <div class="h-64 rounded-2xl overflow-hidden shadow-sm bg-white">
+                                    <img src="{{ asset($imgPath) }}" alt="{{ $product['title'] }}" class="w-full h-full object-cover">
+                                </div>
+                            @else
+                                <div class="h-64 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, #1E3A8A15 0%, #E85D0415 100%);">
+                                    <span class="text-6xl font-bold text-[#1E3A8A]/20">SP</span>
+                                </div>
+                            @endif
+                        @endif
                     </div>
                 </div>
             </div>

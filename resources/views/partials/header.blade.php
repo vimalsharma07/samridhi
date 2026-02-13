@@ -5,7 +5,8 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Samridhi - Build a Strong Future" class="h-14 md:h-16 w-auto object-contain" />
             </a>
 
-            <nav class="hidden xl:flex items-center gap-1">
+            {{-- Desktop nav (shown from lg and up) --}}
+            <nav class="hidden lg:flex items-center gap-1">
 
                 <div class="dropdown relative">
                     <a href="{{ route('about', 'overview') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5 flex items-center gap-1">
@@ -45,7 +46,6 @@
                     </div>
                 </div>
 
-                <a href="{{ route('investors') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5">Investors</a>
                 <a href="{{ route('clients') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5">Clients</a>
                 <a href="{{ route('careers') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5">Careers</a>
                 <a href="{{ route('blog') }}" class="px-4 py-2 text-gray-700 hover:text-[#E85D04] font-medium transition-colors rounded-lg hover:bg-[#E85D04]/5">Blogs</a>
@@ -65,13 +65,15 @@
                 </a>
             </nav>
 
-            <button id="mobile-menu-btn" class="xl:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100" aria-label="Toggle menu">
+            {{-- Mobile menu button (hidden on lg and up) --}}
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100" aria-label="Toggle menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
         </div>
     </div>
 
-    <div id="mobile-menu" class="xl:hidden hidden absolute top-full left-0 right-0 bg-white border-b shadow-xl max-h-[85vh] overflow-y-auto">
+    {{-- Mobile menu (visible below lg) --}}
+    <div id="mobile-menu" class="lg:hidden hidden absolute top-full left-0 right-0 bg-white border-b shadow-xl max-h-[85vh] overflow-y-auto">
         <div class="px-4 py-6 space-y-1">
             <a href="{{ route('home') }}" class="block py-3 px-4 text-gray-700 hover:bg-[#E85D04]/10 hover:text-[#E85D04] rounded-lg font-medium">Home</a>
             <div class="border-t pt-3 mt-3">
@@ -92,7 +94,6 @@
             </div>
             <div class="border-t pt-3">
                 <a href="{{ route('quality') }}" class="block py-3 px-4 text-gray-700 hover:bg-[#E85D04]/10 hover:text-[#E85D04] rounded-lg font-medium">Quality</a>
-                <a href="{{ route('investors') }}" class="block py-3 px-4 text-gray-700 hover:bg-[#E85D04]/10 hover:text-[#E85D04] rounded-lg font-medium">Investors</a>
                 <a href="{{ route('clients') }}" class="block py-3 px-4 text-gray-700 hover:bg-[#E85D04]/10 hover:text-[#E85D04] rounded-lg font-medium">Clients</a>
                 <a href="{{ route('careers') }}" class="block py-3 px-4 text-gray-700 hover:bg-[#E85D04]/10 hover:text-[#E85D04] rounded-lg font-medium">Careers</a>
                 <a href="{{ route('blog') }}" class="block py-3 px-4 text-gray-700 hover:bg-[#E85D04]/10 hover:text-[#E85D04] rounded-lg font-medium">Blogs</a>

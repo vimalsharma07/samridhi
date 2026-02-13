@@ -51,7 +51,7 @@
 
     <div>
         <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Content *</label>
-        <textarea name="content" id="content" class="ckeditor-content">{{ old('content', $blog->content) }}</textarea>
+        <textarea name="content" id="content" rows="15">{{ old('content', $blog->content) }}</textarea>
     </div>
 
     <div>
@@ -74,23 +74,27 @@
     </div>
 </form>
 
-@push('head-scripts')
-<script src="https://cdn.ckeditor.com/4.23.0/full/ckeditor.js"></script>
-@endpush
-
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/ckeditor4@4.25.1/ckeditor.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof CKEDITOR !== 'undefined') {
-        CKEDITOR.replace('content', {
-            height: 400,
-            filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',
-            filebrowserUploadMethod: 'form',
-            filebrowserImageUploadUrl: '{{ route("admin.ckeditor.upload") }}',
-            toolbar: 'Full'
-        });
+(function() {
+    function initCKEditor() {
+        if (typeof CKEDITOR !== 'undefined' && document.getElementById('content')) {
+            CKEDITOR.replace('content', {
+                height: 400,
+                filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',
+                filebrowserUploadMethod: 'form',
+                filebrowserImageUploadUrl: '{{ route("admin.ckeditor.upload") }}',
+                toolbar: 'Full'
+            });
+        } else if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCKEditor);
+        } else {
+            setTimeout(initCKEditor, 100);
+        }
     }
-});
+    initCKEditor();
+})();
 </script>
 @endpush
 @endsection

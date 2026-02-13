@@ -4,7 +4,9 @@
 
 {{-- Hero Slider --}}
 <section class="relative h-[90vh] min-h-[600px] overflow-hidden" id="hero">
-    <div class="hero-slide active absolute inset-0 flex items-center" style="background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 100%);">
+    {{-- Slide 1 - hero with steel pipes background --}}
+    <div class="hero-slide active absolute inset-0 flex items-center"
+         style="background-image: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 60%), url('{{ asset('images/hr-pipes-1.png') }}'); background-size: cover; background-position: center;">
         <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.3\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl">
@@ -25,7 +27,9 @@
             </div>
         </div>
     </div>
-    <div class="hero-slide absolute inset-0 flex items-center" style="background: linear-gradient(135deg, #E85D04 0%, #F48C06 100%);">
+    {{-- Slide 2 - modern builds with square pipes background --}}
+    <div class="hero-slide absolute inset-0 flex items-center"
+         style="background-image: linear-gradient(135deg, #E85D04 0%, #F48C06 70%), url('{{ asset('images/hr-pipes-2.png') }}'); background-size: cover; background-position: center;">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl ml-auto text-right">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-right">
@@ -42,7 +46,9 @@
             </div>
         </div>
     </div>
-    <div class="hero-slide absolute inset-0 flex items-center" style="background: linear-gradient(135deg, #1E3A8A 60%, #0F172A 100%);">
+    {{-- Slide 3 - infrastructure focus with yard background --}}
+    <div class="hero-slide absolute inset-0 flex items-center"
+         style="background-image: linear-gradient(135deg, #1E3A8A 60%, #0F172A 100%), url('{{ asset('images/hr-pipes-3.png') }}'); background-size: cover; background-position: center;">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-up">
                 Infrastructure <span class="text-[#F48C06]">Backbone</span> of Bharat
@@ -96,13 +102,13 @@
                 <a href="{{ route('about', 'overview') }}" class="inline-flex mt-8 px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-colors">Read More</a>
             </div>
             <div class="relative">
-                <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="text-white/10 text-[200px] font-bold">SP</div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-black/80 to-transparent">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
+                    <img src="{{ asset('images/hr-pipes-4.png') }}" alt="Samridhi steel pipes manufacturing"
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#0f172acc] via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
                         <p class="text-white text-2xl font-bold">18+ Years</p>
-                        <p class="text-white/90 mt-1">Rich industry experience</p>
+                        <p class="text-white/90 mt-1">Rich industry experience in steel pipes & tubes</p>
                     </div>
                 </div>
             </div>
@@ -239,6 +245,13 @@
             </div>
             <a href="{{ route('blog') }}" class="px-6 py-3 border-2 border-[#E85D04] text-[#E85D04] font-semibold rounded-lg hover:bg-[#E85D04] hover:text-white transition-colors">View All</a>
         </div>
+        @php
+            $newsImages = [
+                'images/hr-pipes-1.png',
+                'images/hr-pipes-2.png',
+                'images/hr-pipes-3.png',
+            ];
+        @endphp
         <div class="mt-16 grid md:grid-cols-3 gap-8">
             @foreach([
                 ['date' => '15 Jan 2025', 'title' => 'North-East Build Expo 2025', 'excerpt' => 'Samridhi Pipes showcased latest innovations at the prestigious expo.'],
@@ -246,8 +259,10 @@
                 ['date' => '05 Jan 2025', 'title' => 'New Tube Mill Commissioning', 'excerpt' => 'Expansion of capacity to meet growing demand across India.'],
             ] as $news)
             <article class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover-lift scroll-reveal">
-                <div class="h-48 bg-gradient-to-br from-[#1E3A8A] to-[#2563EB] flex items-center justify-center">
-                    <span class="text-white/20 text-6xl font-bold">SP</span>
+                <div class="h-48 overflow-hidden">
+                    <img src="{{ asset($newsImages[$loop->index % count($newsImages)]) }}"
+                         alt="{{ $news['title'] }}"
+                         class="w-full h-full object-cover">
                 </div>
                 <div class="p-6 bg-white">
                     <p class="text-[#E85D04] font-semibold text-sm">{{ $news['date'] }}</p>
