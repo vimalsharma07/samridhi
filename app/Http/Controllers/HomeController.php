@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Product;
 use App\Models\WebsiteSetting;
 
 class HomeController extends Controller
@@ -19,7 +20,8 @@ class HomeController extends Controller
 
     public function products($slug = null)
     {
-        return view('products.index', compact('slug'));
+        $products = Product::active()->ordered()->get();
+        return view('products.index', compact('slug', 'products'));
     }
 
     public function quality($page = 'control')

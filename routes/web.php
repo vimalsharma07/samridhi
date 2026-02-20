@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
         Route::resource('blogs', AdminBlogController::class);
+        Route::resource('products', AdminProductController::class)->except(['show']);
         Route::post('/ckeditor/upload', [\App\Http\Controllers\Admin\CkEditorUploadController::class, 'upload'])->name('ckeditor.upload');
     });
 });
