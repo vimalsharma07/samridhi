@@ -24,7 +24,7 @@
     <style>
         * { font-family: 'DM Sans', system-ui, sans-serif; }
         .sidebar-link.active { background: rgba(255,255,255,0.15); border-left: 3px solid #F48C06; }
-        .cke { min-height: 400px !important; }
+        .cke_contents { min-height: 450px !important; }
     </style>
     @stack('styles')
     @stack('head-scripts')

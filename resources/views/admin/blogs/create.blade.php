@@ -67,27 +67,23 @@
     </div>
 </form>
 
+@push('head-scripts')
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+@endpush
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/ckeditor4@4.25.1/ckeditor.js"></script>
 <script>
-(function() {
-    function initCKEditor() {
-        if (typeof CKEDITOR !== 'undefined' && document.getElementById('content')) {
-            CKEDITOR.replace('content', {
-                height: 400,
-                filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',
-                filebrowserUploadMethod: 'form',
-                filebrowserImageUploadUrl: '{{ route("admin.ckeditor.upload") }}',
-                toolbar: 'Full'
-            });
-        } else if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initCKEditor);
-        } else {
-            setTimeout(initCKEditor, 100);
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('content');
+    if (el && typeof CKEDITOR !== 'undefined') {
+        CKEDITOR.replace('content', {
+            height: 450,
+            filebrowserUploadUrl: '{{ route("admin.ckeditor.upload") }}',
+            filebrowserUploadMethod: 'form',
+            filebrowserImageUploadUrl: '{{ route("admin.ckeditor.upload") }}',
+            toolbar: 'Full'
+        });
     }
-    initCKEditor();
-})();
+});
 </script>
 @endpush
 @endsection
