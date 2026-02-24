@@ -18,10 +18,18 @@ class HomeController extends Controller
         return view('about.index', compact('page'));
     }
 
-    public function products($slug = null)
+    public function products()
     {
         $products = Product::active()->ordered()->get();
-        return view('products.index', compact('slug', 'products'));
+        return view('products.index', compact('products'));
+    }
+
+    public function productShow(string $slug)
+    {
+        $product = Product::active()->where('slug', $slug)->firstOrFail();
+        $title = $product->title . ' | Samridhi - Steel Pipes & Tubes';
+        $metaDescription = \Illuminate\Support\Str::limit($product->short_description ?? $product->title, 160);
+        return view('products.show', compact('product', 'title', 'metaDescription'));
     }
 
     public function quality($page = 'control')

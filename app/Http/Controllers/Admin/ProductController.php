@@ -27,6 +27,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->title = $validated['title'];
         $product->short_description = $validated['short_description'] ?? null;
+        $product->tagline = $validated['tagline'] ?? null;
         $product->description = $validated['description'] ?? null;
         $product->sort_order = (int) ($validated['sort_order'] ?? 0);
         $product->is_active = $request->boolean('is_active');
@@ -36,6 +37,8 @@ class ProductController extends Controller
         if ($request->hasFile('featured_image')) {
             $product->featured_image = $this->moveImage($request->file('featured_image'), 'products');
         }
+
+        $product->images = $this->moveGalleryImages($request->file('gallery_images') ?? []);
 
         $product->save();
 
@@ -54,6 +57,7 @@ class ProductController extends Controller
 
         $product->title = $validated['title'];
         $product->short_description = $validated['short_description'] ?? null;
+        $product->tagline = $validated['tagline'] ?? null;
         $product->description = $validated['description'] ?? null;
         $product->sort_order = (int) ($validated['sort_order'] ?? 0);
         $product->is_active = $request->boolean('is_active');
@@ -62,6 +66,11 @@ class ProductController extends Controller
 
         if ($request->hasFile('featured_image')) {
             $product->featured_image = $this->moveImage($request->file('featured_image'), 'products');
+        }
+
+        $newGallery = $this->moveGalleryImages($request->file('gallery_images') ?? []);
+        if (!empty($newGallery)) {
+            $product->images = array_merge($product->images ?? [], $newGallery);
         }
 
         $product->save();
@@ -79,15 +88,21 @@ class ProductController extends Controller
 
     protected function validateProduct(Request $request): array
     {
-        return $request->validate([
+        $rules = [
             'title' => ['required', 'string', 'max:255'],
             'short_description' => ['nullable', 'string', 'max:500'],
+            'tagline' => ['nullable', 'string', 'max:500'],
             'description' => ['nullable', 'string'],
             'featured_image' => ['nullable', 'image', 'max:2048'],
             'applications_text' => ['nullable', 'string'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable'],
-        ]);
+        ];
+        if ($request->hasFile('gallery_images')) {
+            $rules['gallery_images'] = ['array'];
+            $rules['gallery_images.*'] = ['image', 'max:2048'];
+        }
+        return $request->validate($rules);
     }
 
     protected function parseApplications(?string $text): array
@@ -111,6 +126,18 @@ class ProductController extends Controller
         $file->move($dir, $name);
 
         return $path;
+    }
+
+    /** @return array<int, string> */
+    protected function moveGalleryImages(array $files): array
+    {
+        $paths = [];
+        foreach (array_filter($files) as $file) {
+            if ($file && $file->isValid()) {
+                $paths[] = $this->moveImage($file, 'products');
+            }
+        }
+        return $paths;
     }
 
     protected function uniqueSlug(string $title, ?int $excludeId = null): string

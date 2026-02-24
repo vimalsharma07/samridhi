@@ -38,6 +38,13 @@
     </div>
 
     <div>
+        <label for="tagline" class="block text-sm font-medium text-gray-700 mb-2">Tagline</label>
+        <input type="text" name="tagline" id="tagline" value="{{ old('tagline', $product->tagline) }}"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent"
+            placeholder="e.g. Helping better lives by providing clean water to every household.">
+    </div>
+
+    <div>
         <label for="featured_image" class="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
         @if($product->featured_image)
         <div class="mb-2">
@@ -47,6 +54,20 @@
         <input type="file" name="featured_image" id="featured_image" accept="image/*"
             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent">
         <p class="mt-1 text-sm text-gray-500">Leave empty to keep current image</p>
+    </div>
+
+    <div>
+        <label for="gallery_images" class="block text-sm font-medium text-gray-700 mb-2">Gallery Images</label>
+        @if($product->images && count($product->images) > 0)
+        <div class="flex flex-wrap gap-2 mb-2">
+            @foreach($product->images as $img)
+            <img src="{{ asset('uploads/' . $img) }}" alt="" class="h-20 w-20 rounded-lg object-cover border border-gray-200">
+            @endforeach
+        </div>
+        @endif
+        <input type="file" name="gallery_images[]" id="gallery_images" accept="image/*" multiple
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent">
+        <p class="mt-1 text-sm text-gray-500">Add more images; new uploads are added to the gallery</p>
     </div>
 
     <div>

@@ -9,7 +9,7 @@
 </section>
 
 @php
-    $useDb = isset($products) && $products->isNotEmpty();
+    $useDb = isset($products) && $products->count() > 0;
     if (!$useDb) {
         $products = collect([
             ['id' => 'hr-pipes', 'title' => 'HR Pipes & Tubes', 'short_description' => 'Hot Rolled (HR) pipes and tubes manufactured to meet stringent quality standards. Ideal for structural applications, mechanical engineering, and general purpose use. Available in various sizes and specifications as per ISI and BS standards.', 'description' => null, 'applications' => ['Structural frameworks', 'Mechanical applications', 'Agriculture', 'Furniture'], 'featured_image' => null],
@@ -39,7 +39,16 @@
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <span class="text-[#E85D04] font-bold text-sm uppercase">{{ $title }}</span>
-                        <h2 class="mt-2 text-3xl font-bold text-[#1E3A8A]">{{ $title }}</h2>
+                        <h2 class="mt-2 text-3xl font-bold text-[#1E3A8A]">
+                            @if($useDb)
+                            <a href="{{ route('products.show', $product->slug) }}" class="hover:text-[#E85D04] transition-colors">{{ $title }}</a>
+                            @else
+                            {{ $title }}
+                            @endif
+                        </h2>
+                        @if($useDb)
+                        <a href="{{ route('products.show', $product->slug) }}" class="inline-flex mt-3 text-[#1E3A8A] font-semibold hover:text-[#E85D04] transition-colors">View product details →</a>
+                        @endif
                         @if($desc)
                         <p class="mt-4 text-gray-600">{{ $desc }}</p>
                         @endif

@@ -41,7 +41,7 @@
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-500">{{ $product->sort_order }}</td>
                 <td class="px-6 py-4 text-right space-x-2">
-                    <a href="{{ route('products') }}#{{ $product->slug }}" target="_blank"
+                    <a href="{{ route('products.show', $product->slug) }}" target="_blank"
                         class="text-[#1E3A8A] hover:underline text-sm">View</a>
                     <a href="{{ route('admin.products.edit', $product) }}"
                         class="text-[#1E3A8A] hover:underline text-sm">Edit</a>
