@@ -123,7 +123,6 @@
         <div class="flex items-center gap-3 mb-8">
             
         </div>
-        <p class="text-gray-600 mb-10 max-w-2xl">Latest news and updates related to {{ $product->title }}.</p>
         <div class="grid md:grid-cols-3 gap-8">
             @foreach($relatedBlogs as $blog)
             <a href="{{ route('blog.show', $blog->slug) }}" class="group block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
