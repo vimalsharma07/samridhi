@@ -121,8 +121,7 @@
 <section class="py-14 md:py-20 bg-[#F8FAFC]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-3 mb-8">
-            <span class="w-10 h-1 rounded-full bg-[#E85D04]"></span>
-            <h2 class="text-2xl md:text-3xl font-bold text-[#1E3A8A]">Related Blogs</h2>
+            
         </div>
         <p class="text-gray-600 mb-10 max-w-2xl">Latest news and updates related to {{ $product->title }}.</p>
         <div class="grid md:grid-cols-3 gap-8">
