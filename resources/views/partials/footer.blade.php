@@ -51,7 +51,7 @@
             <div>
                 <h4 class="font-bold text-lg mb-5">Quick Links</h4>
                 <ul class="space-y-3 text-white/90 text-sm">
-                    <li><a href="{{ route('about', 'overview') }}" class="hover:text-[#F48C06] transition-colors">About Us</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-[#F48C06] transition-colors">About Us</a></li>
                     <li><a href="{{ route('products') }}" class="hover:text-[#F48C06] transition-colors">Products</a></li>
                     <li><a href="{{ route('quality') }}" class="hover:text-[#F48C06] transition-colors">Quality Policy</a></li>
                     <li><a href="{{ route('investors') }}" class="hover:text-[#F48C06] transition-colors">Investors</a></li>

@@ -10,12 +10,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index');
+        $latestBlogs = Blog::published()->latest('published_at')->take(3)->get();
+        return view('home.index', compact('latestBlogs'));
     }
 
-    public function about($page = 'overview')
+    public function about()
     {
-        return view('about.index', compact('page'));
+        return view('about.index');
     }
 
     public function products()
@@ -32,9 +33,9 @@ class HomeController extends Controller
         return view('products.show', compact('product', 'title', 'metaDescription'));
     }
 
-    public function quality($page = 'control')
+    public function quality()
     {
-        return view('quality.index', compact('page'));
+        return view('quality.index');
     }
 
     public function investors()

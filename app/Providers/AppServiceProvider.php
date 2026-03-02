@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Composers\NavProductsComposer;
 use App\View\Composers\WebsiteSettingsComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -16,5 +17,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer(['partials.footer', 'layouts.app'], WebsiteSettingsComposer::class);
+        View::composer('partials.header', NavProductsComposer::class);
     }
 }

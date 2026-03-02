@@ -39,7 +39,7 @@
                     Consistent Quality. Premium Finish. Unparalleled performance in agriculture, infrastructure & construction.
                 </p>
                 <div class="mt-10 flex flex-wrap gap-4 justify-end opacity-0 animate-fade-in-right animation-delay-300">
-                    <a href="{{ route('about', 'overview') }}" class="inline-flex items-center px-8 py-4 bg-[#1E3A8A] hover:bg-[#1D4ED8] text-white font-semibold rounded-lg transition-all duration-300">
+                    <a href="{{ route('about') }}" class="inline-flex items-center px-8 py-4 bg-[#1E3A8A] hover:bg-[#1D4ED8] text-white font-semibold rounded-lg transition-all duration-300">
                         About Us
                     </a>
                 </div>
@@ -99,7 +99,7 @@
                         <p class="mt-2 text-gray-600 text-sm">Meet highest standards in quality products, service, experience and trust.</p>
                     </div>
                 </div>
-                <a href="{{ route('about', 'overview') }}" class="inline-flex mt-8 px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-colors">Read More</a>
+                <a href="{{ route('about') }}" class="inline-flex mt-8 px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-colors">Read More</a>
             </div>
             <div class="relative">
                 <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
@@ -182,7 +182,7 @@
             <h2 class="mt-4 text-4xl font-bold text-[#1E3A8A]">Trusted Across Sectors</h2>
         </div>
         <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach(['Agriculture', 'Infrastructure', 'Power', 'Construction'] as $industry)
+            @foreach(['Construction', 'Infrastructure', 'Power', 'Agriculture'] as $industry)
             <div class="text-center p-10 rounded-2xl bg-[#F8FAFC] hover:bg-[#1E3A8A] hover:text-white transition-all duration-300 group scroll-reveal">
                 <div class="w-20 h-20 mx-auto rounded-2xl bg-[#E85D04]/10 group-hover:bg-[#F48C06]/20 flex items-center justify-center">
                     <svg class="w-10 h-10 text-[#E85D04] group-hover:text-[#F48C06]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
@@ -195,7 +195,7 @@
 </section>
 
 {{-- Stats --}}
-<section class="py-20 bg-gradient-to-r from-[#E85D04] via-[#F48C06] to-[#E85D04] text-white scroll-reveal">
+{{-- <section class="py-20 bg-gradient-to-r from-[#E85D04] via-[#F48C06] to-[#E85D04] text-white scroll-reveal">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 lg:grid-cols-6 gap-8">
             @foreach([
@@ -213,7 +213,7 @@
             @endforeach
         </div>
     </div>
-</section>
+</section> --}}
 
 {{-- Clients --}}
 <section class="py-24 bg-[#F8FAFC] scroll-reveal">
@@ -245,32 +245,33 @@
             </div>
             <a href="{{ route('blog') }}" class="px-6 py-3 border-2 border-[#E85D04] text-[#E85D04] font-semibold rounded-lg hover:bg-[#E85D04] hover:text-white transition-colors">View All</a>
         </div>
-        @php
-            $newsImages = [
-                'images/hr-pipes-1.png',
-                'images/hr-pipes-2.png',
-                'images/hr-pipes-3.png',
-            ];
-        @endphp
         <div class="mt-16 grid md:grid-cols-3 gap-8">
-            @foreach([
-                ['date' => '15 Jan 2025', 'title' => 'North-East Build Expo 2025', 'excerpt' => 'Samridhi Pipes showcased latest innovations at the prestigious expo.'],
-                ['date' => '10 Jan 2025', 'title' => 'Blood Donation Camp 2025', 'excerpt' => 'Annual CSR initiative - 200+ units donated at our manufacturing facility.'],
-                ['date' => '05 Jan 2025', 'title' => 'New Tube Mill Commissioning', 'excerpt' => 'Expansion of capacity to meet growing demand across India.'],
-            ] as $news)
-            <article class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover-lift scroll-reveal">
-                <div class="h-48 overflow-hidden">
-                    <img src="{{ asset($newsImages[$loop->index % count($newsImages)]) }}"
-                         alt="{{ $news['title'] }}"
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 bg-white">
-                    <p class="text-[#E85D04] font-semibold text-sm">{{ $news['date'] }}</p>
-                    <h3 class="mt-2 text-xl font-bold text-[#1E3A8A]">{{ $news['title'] }}</h3>
-                    <p class="mt-2 text-gray-600 text-sm">{{ $news['excerpt'] }}</p>
-                </div>
-            </article>
-            @endforeach
+            @forelse($latestBlogs ?? [] as $blog)
+            <a href="{{ route('blog.show', $blog->slug) }}" class="block group rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover-lift scroll-reveal">
+                <article class="h-full">
+                    <div class="h-48 overflow-hidden">
+                        @if($blog->featured_image)
+                        <img src="{{ asset('uploads/' . $blog->featured_image) }}" alt="{{ $blog->title }}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        @else
+                        <div class="h-full bg-gradient-to-br from-[#1E3A8A] to-[#2563EB] flex items-center justify-center">
+                            <span class="text-white/20 text-5xl font-bold">SP</span>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="p-6 bg-white">
+                        <p class="text-[#E85D04] font-semibold text-sm">{{ $blog->published_at?->format('d M Y') ?? $blog->created_at->format('d M Y') }}</p>
+                        <h3 class="mt-2 text-xl font-bold text-[#1E3A8A] group-hover:text-[#E85D04] transition-colors">{{ $blog->title }}</h3>
+                        <p class="mt-2 text-gray-600 text-sm">{{ $blog->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($blog->content), 100) }}</p>
+                    </div>
+                </article>
+            </a>
+            @empty
+            <div class="md:col-span-3 text-center py-12 text-gray-500">
+                <p>No updates yet. Check back soon!</p>
+                <a href="{{ route('blog') }}" class="inline-block mt-4 text-[#E85D04] font-semibold hover:underline">View Blog</a>
+            </div>
+            @endforelse
         </div>
     </div>
 </section>

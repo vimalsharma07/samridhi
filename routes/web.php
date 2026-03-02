@@ -9,10 +9,10 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about/{page?}', [HomeController::class, 'about'])->name('about')->defaults('page', 'overview');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/products', [HomeController::class, 'products'])->name('products');
 Route::get('/products/{slug}', [HomeController::class, 'productShow'])->name('products.show');
-Route::get('/quality/{page?}', [HomeController::class, 'quality'])->name('quality')->defaults('page', 'control');
+Route::get('/quality', [HomeController::class, 'quality'])->name('quality');
 Route::get('/investors', [HomeController::class, 'investors'])->name('investors');
 Route::get('/clients', [HomeController::class, 'clients'])->name('clients');
 Route::get('/careers', [HomeController::class, 'careers'])->name('careers');
