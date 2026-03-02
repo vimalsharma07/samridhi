@@ -81,8 +81,7 @@
 @if(isset($relatedBlogs) && $relatedBlogs->isNotEmpty())
 <section class="py-16 bg-[#F8FAFC] border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl md:text-3xl font-bold text-[#1E3A8A] mb-2">Related Blogs</h2>
-        <p class="text-gray-600 mb-10">Latest news and updates related to {{ $product->title }}.</p>
+        
         <div class="grid md:grid-cols-3 gap-8">
             @foreach($relatedBlogs as $blog)
             <a href="{{ route('blog.show', $blog->slug) }}" class="group block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
