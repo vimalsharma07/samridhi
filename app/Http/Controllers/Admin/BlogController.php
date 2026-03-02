@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -18,7 +19,8 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('admin.blogs.create');
+        $products = Product::active()->ordered()->get(['id', 'title']);
+        return view('admin.blogs.create', compact('products'));
     }
 
     public function store(Request $request)
@@ -27,6 +29,7 @@ class BlogController extends Controller
 
         $blog = new Blog($validated);
         $blog->user_id = auth()->id();
+        $blog->product_id = $validated['product_id'] ?? null;
         $blog->slug = $this->uniqueSlug($validated['title']);
         $blog->published_at = $validated['is_published'] ? now() : null;
 
@@ -47,7 +50,8 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        return view('admin.blogs.edit', compact('blog'));
+        $products = Product::active()->ordered()->get(['id', 'title']);
+        return view('admin.blogs.edit', compact('blog', 'products'));
     }
 
     public function update(Request $request, Blog $blog)
@@ -55,6 +59,7 @@ class BlogController extends Controller
         $validated = $this->validateBlog($request, $blog);
 
         $blog->fill($validated);
+        $blog->product_id = $validated['product_id'] ?? null;
         $blog->slug = $this->uniqueSlug($validated['title'], $blog->id);
         $blog->published_at = $validated['is_published'] ? ($blog->published_at ?? now()) : null;
 
@@ -82,6 +87,7 @@ class BlogController extends Controller
             'excerpt' => ['nullable', 'string', 'max:500'],
             'content' => ['required', 'string'],
             'featured_image' => ['nullable', 'image', 'max:2048'],
+            'product_id' => ['nullable', 'integer', 'exists:products,id'],
             'is_published' => ['nullable'],
         ]);
         $validated['is_published'] = $request->boolean('is_published');

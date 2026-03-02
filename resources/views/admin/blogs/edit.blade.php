@@ -50,6 +50,18 @@
     </div>
 
     <div>
+        <label for="product_id" class="block text-sm font-medium text-gray-700 mb-2">Related Product</label>
+        <select name="product_id" id="product_id"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent">
+            <option value="">— None —</option>
+            @foreach($products as $p)
+            <option value="{{ $p->id }}" {{ old('product_id', $blog->product_id) == $p->id ? 'selected' : '' }}>{{ $p->title }}</option>
+            @endforeach
+        </select>
+        <p class="mt-1 text-sm text-gray-500">Link this blog to a product to show it in the product's Related Blogs section.</p>
+    </div>
+
+    <div>
         <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Content *</label>
         <textarea name="content" id="content" rows="15">{{ old('content', $blog->content) }}</textarea>
     </div>

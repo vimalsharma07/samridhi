@@ -9,7 +9,7 @@ class Blog extends Model
 {
     protected $fillable = [
         'title', 'slug', 'excerpt', 'content', 'featured_image',
-        'is_published', 'published_at', 'user_id'
+        'is_published', 'published_at', 'user_id', 'product_id'
     ];
 
     protected $casts = [
@@ -37,6 +37,11 @@ class Blog extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
     public function scopePublished($query)

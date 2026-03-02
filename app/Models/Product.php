@@ -45,4 +45,9 @@ class Product extends Model
     {
         return $query->orderBy('sort_order')->orderBy('title');
     }
+
+    public function relatedBlogs()
+    {
+        return $this->hasMany(Blog::class, 'product_id');
+    }
 }

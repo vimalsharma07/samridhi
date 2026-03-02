@@ -28,9 +28,14 @@ class HomeController extends Controller
     public function productShow(string $slug)
     {
         $product = Product::active()->where('slug', $slug)->firstOrFail();
+        $relatedBlogs = Blog::published()
+            ->where('product_id', $product->id)
+            ->latest('published_at')
+            ->take(3)
+            ->get();
         $title = $product->title . ' | Samridhi - Steel Pipes & Tubes';
         $metaDescription = \Illuminate\Support\Str::limit($product->short_description ?? $product->title, 160);
-        return view('products.show', compact('product', 'title', 'metaDescription'));
+        return view('products.show', compact('product', 'relatedBlogs', 'title', 'metaDescription'));
     }
 
     public function quality()
