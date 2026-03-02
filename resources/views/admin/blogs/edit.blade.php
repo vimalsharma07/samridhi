@@ -62,6 +62,22 @@
     </div>
 
     <div>
+        <label for="product_detail_title" class="block text-sm font-medium text-gray-700 mb-2">Product details page title</label>
+        <input type="text" name="product_detail_title" id="product_detail_title" value="{{ old('product_detail_title', $blog->product_detail_title) }}"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent"
+            placeholder="e.g. Rectangular Hollow Section">
+        <p class="mt-1 text-sm text-gray-500">Title shown on the product detail page card (leave empty to use blog title).</p>
+    </div>
+
+    <div>
+        <label for="product_detail_points" class="block text-sm font-medium text-gray-700 mb-2">Product detail page points</label>
+        <textarea name="product_detail_points" id="product_detail_points" rows="5"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent"
+            placeholder="One point per line">{{ old('product_detail_points', $blog->product_detail_points) }}</textarea>
+        <p class="mt-1 text-sm text-gray-500">Bullet points shown on the product detail page card (one per line).</p>
+    </div>
+
+    <div>
         <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Content *</label>
         <textarea name="content" id="content" rows="15">{{ old('content', $blog->content) }}</textarea>
     </div>

@@ -88,6 +88,8 @@ class BlogController extends Controller
             'content' => ['required', 'string'],
             'featured_image' => ['nullable', 'image', 'max:2048'],
             'product_id' => ['nullable', 'integer', 'exists:products,id'],
+            'product_detail_title' => ['nullable', 'string', 'max:255'],
+            'product_detail_points' => ['nullable', 'string', 'max:2000'],
             'is_published' => ['nullable'],
         ]);
         $validated['is_published'] = $request->boolean('is_published');

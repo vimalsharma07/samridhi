@@ -9,7 +9,8 @@ class Blog extends Model
 {
     protected $fillable = [
         'title', 'slug', 'excerpt', 'content', 'featured_image',
-        'is_published', 'published_at', 'user_id', 'product_id'
+        'is_published', 'published_at', 'user_id', 'product_id',
+        'product_detail_title', 'product_detail_points'
     ];
 
     protected $casts = [
@@ -51,5 +52,15 @@ class Blog extends Model
                 $q->whereNull('published_at')
                     ->orWhere('published_at', '<=', now());
             });
+    }
+
+    /** @return array<int, string> */
+    public function getProductDetailPointsArrayAttribute(): array
+    {
+        if (empty($this->product_detail_points)) {
+            return [];
+        }
+        $lines = preg_split('/\r\n|\r|\n/', trim($this->product_detail_points), -1, PREG_SPLIT_NO_EMPTY);
+        return array_values(array_filter(array_map('trim', $lines)));
     }
 }
