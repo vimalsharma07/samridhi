@@ -4,10 +4,10 @@
 
 {{-- Hero Slider --}}
 <section class="relative h-[90vh] min-h-[600px] overflow-hidden" id="hero">
-    {{-- Slide 1 - hero with steel pipes background --}}
+    {{-- Slide 1 --}}
     <div class="hero-slide active absolute inset-0 flex items-center"
-         style="background-image: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 60%), url('{{ asset('images/hr-pipes-1.png') }}'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.3\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/svg%3E');"></div>
+         style="background-image: url('{{ asset('images/heroslider1.jpeg') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-left">
@@ -27,9 +27,10 @@
             </div>
         </div>
     </div>
-    {{-- Slide 2 - modern builds with square pipes background --}}
+    {{-- Slide 2 --}}
     <div class="hero-slide absolute inset-0 flex items-center"
-         style="background-image: linear-gradient(135deg, #E85D04 0%, #F48C06 70%), url('{{ asset('images/hr-pipes-2.png') }}'); background-size: cover; background-position: center;">
+         style="background-image: url('{{ asset('images/heroslider2.jpeg') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl ml-auto text-right">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-right">
@@ -46,9 +47,10 @@
             </div>
         </div>
     </div>
-    {{-- Slide 3 - infrastructure focus with yard background --}}
+    {{-- Slide 3 --}}
     <div class="hero-slide absolute inset-0 flex items-center"
-         style="background-image: linear-gradient(135deg, #1E3A8A 60%, #0F172A 100%), url('{{ asset('images/hr-pipes-3.png') }}'); background-size: cover; background-position: center;">
+         style="background-image: url('{{ asset('images/heroslider3.jpeg') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-up">
                 Infrastructure <span class="text-[#F48C06]">Backbone</span> of Bharat
@@ -63,7 +65,32 @@
             </div>
         </div>
     </div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2" id="hero-dots"></div>
+    {{-- Slide 4 --}}
+    <div class="hero-slide absolute inset-0 flex items-center"
+         style="background-image: url('{{ asset('images/heroslider4.jpeg') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-up">
+                From Farms to <span class="text-[#F48C06]">Factories</span>
+            </h1>
+            <p class="mt-6 text-xl text-white/90 max-w-2xl mx-auto opacity-0 animate-fade-in-up animation-delay-200">
+                Powering agriculture, industry, construction and utilities across India with quality steel solutions.
+            </p>
+            <div class="mt-10 opacity-0 animate-fade-in-up animation-delay-300">
+                <a href="{{ route('products') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
+                    Explore Products
+                </a>
+            </div>
+        </div>
+    </div>
+    {{-- Prev / Next arrows --}}
+    <button type="button" id="hero-prev" class="hero-arrow absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all" aria-label="Previous slide">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button type="button" id="hero-next" class="hero-arrow absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all" aria-label="Next slide">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20" id="hero-dots"></div>
 </section>
 
 {{-- Marquee --}}
@@ -312,21 +339,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const slides = document.querySelectorAll('.hero-slide');
     const dotsContainer = document.getElementById('hero-dots');
-    if (slides.length > 1 && dotsContainer) {
+    const heroPrev = document.getElementById('hero-prev');
+    const heroNext = document.getElementById('hero-next');
+    const heroSection = document.getElementById('hero');
+    if (slides.length > 0 && dotsContainer) {
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
             dot.className = 'w-2 h-2 rounded-full transition-all ' + (i === 0 ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/80');
-            dot.addEventListener('click', () => goToSlide(i));
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', () => { goToSlide(i); resetAutoScroll(); });
             dotsContainer.appendChild(dot);
         });
         let current = 0;
+        let autoScrollTimer = null;
+        const AUTO_SCROLL_INTERVAL = 5000;
+
         function goToSlide(i) {
             slides[current].classList.remove('active');
             current = (i + slides.length) % slides.length;
             slides[current].classList.add('active');
-            dotsContainer.querySelectorAll('button').forEach((d, j) => { d.className = 'w-2 h-2 rounded-full transition-all ' + (j === current ? 'bg-white w-8' : 'bg-white/50'); });
+            dotsContainer.querySelectorAll('button').forEach((d, j) => {
+                d.className = 'w-2 h-2 rounded-full transition-all ' + (j === current ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/80');
+            });
         }
-        setInterval(() => goToSlide(current + 1), 5000);
+
+        function nextSlide() { goToSlide(current + 1); }
+        function prevSlide() { goToSlide(current - 1); }
+
+        function startAutoScroll() {
+            if (autoScrollTimer) clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(nextSlide, AUTO_SCROLL_INTERVAL);
+        }
+        function resetAutoScroll() {
+            startAutoScroll();
+        }
+
+        if (heroPrev) heroPrev.addEventListener('click', () => { prevSlide(); resetAutoScroll(); });
+        if (heroNext) heroNext.addEventListener('click', () => { nextSlide(); resetAutoScroll(); });
+
+        if (slides.length > 1) startAutoScroll();
+
+        if (heroSection && slides.length > 1) {
+            heroSection.addEventListener('mouseenter', () => { if (autoScrollTimer) clearInterval(autoScrollTimer); });
+            heroSection.addEventListener('mouseleave', startAutoScroll);
+        }
+
+        var touchStartX = 0, touchEndX = 0;
+        heroSection && heroSection.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        heroSection && heroSection.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            var diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) { (diff > 0 ? nextSlide : prevSlide)(); resetAutoScroll(); }
+        }, { passive: true });
     }
 });
 </script>

@@ -54,8 +54,10 @@
         .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; }
         .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2); }
-        .hero-slide { display: none; }
-        .hero-slide.active { display: flex; animation: fadeIn 1s ease; }
+        .hero-slide { display: none !important; opacity: 0; visibility: hidden; pointer-events: none; z-index: 0; }
+        .hero-slide.active { display: flex !important; opacity: 1; visibility: visible; pointer-events: auto; z-index: 1; animation: heroSlideFadeIn 0.6s ease forwards; }
+        .hero-slide.active [class*="animate-fade-in"] { opacity: 1 !important; }
+        @keyframes heroSlideFadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="antialiased text-gray-900" style="background-color: #F8FAFC;">
