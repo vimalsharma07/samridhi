@@ -71,15 +71,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+            var mobileBtn = document.getElementById('mobile-menu-btn');
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', function() { mobileMenu.classList.toggle('hidden'); });
+            }
+            document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+                a.addEventListener('click', function(e) {
+                    var href = a.getAttribute('href');
+                    if (href === '#') return;
+                    var target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        if (mobileMenu) mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate-fade-in-up');
                         entry.target.classList.remove('opacity-0');
                     }
                 });
             }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-reveal').forEach(el => {
+            document.querySelectorAll('.scroll-reveal').forEach(function(el) {
                 el.classList.add('opacity-0');
                 observer.observe(el);
             });

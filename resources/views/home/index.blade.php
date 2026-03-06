@@ -323,20 +323,6 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const href = a.getAttribute('href');
-            if (href === '#') return;
-            const target = document.querySelector(href);
-            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); mobileMenu?.classList.add('hidden'); }
-        });
-    });
-
-
     const slides = document.querySelectorAll('.hero-slide');
     const dotsContainer = document.getElementById('hero-dots');
     const heroPrev = document.getElementById('hero-prev');
