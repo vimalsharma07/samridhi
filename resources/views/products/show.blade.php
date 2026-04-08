@@ -109,13 +109,60 @@
 </section>
 @endif
 
+{{-- FAQs --}}
+@php $productFaqs = $product->faqsForDisplay(); @endphp
+@if(count($productFaqs) > 0)
+<style>
+    .product-faq details > summary { list-style: none; }
+    .product-faq details > summary::-webkit-details-marker { display: none; }
+    .product-faq details[open] .product-faq-chevron { transform: rotate(180deg); }
+    .product-faq details[open] > summary { border-bottom-color: rgb(229 231 235); }
+</style>
+<section class="relative py-14 md:py-20 bg-white">
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,#F8FAFC_0%,#ffffff_55%)] pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div class="lg:col-span-4">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-10 h-1 rounded-full bg-[#E85D04]"></span>
+                    <span class="text-[#E85D04] font-bold uppercase tracking-widest text-sm">Help</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-[#1E3A8A] leading-tight">Frequently asked questions</h2>
+                <p class="mt-4 text-gray-600 leading-relaxed">Quick answers about {{ $product->title }}. For detailed specs or pricing, reach out to our team.</p>
+                <a href="{{ route('contact') }}" class="mt-6 inline-flex items-center gap-2 text-[#E85D04] font-semibold hover:text-[#D35400] transition-colors">
+                    Still have questions?
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+            <div class="lg:col-span-8 space-y-3 product-faq">
+                @foreach($productFaqs as $i => $faq)
+                <details class="group rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-[#E85D04]/25 transition-all duration-300 overflow-hidden" @if($i === 0) open @endif>
+                    <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-[#1E3A8A] text-base sm:text-lg border-b border-transparent">
+                        <span class="pr-2">{{ $faq['q'] }}</span>
+                        <span class="product-faq-chevron flex-shrink-0 w-10 h-10 rounded-full bg-[#1E3A8A]/8 text-[#1E3A8A] flex items-center justify-center transition-transform duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </span>
+                    </summary>
+                    <div class="px-5 pb-5 pt-0 text-gray-600 text-sm sm:text-base leading-relaxed border-t border-gray-100">
+                        <p class="pt-4">{{ $faq['a'] }}</p>
+                    </div>
+                </details>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
 {{-- Related Blogs --}}
 @if(isset($relatedBlogs) && $relatedBlogs->isNotEmpty())
 <section class="py-14 md:py-20 bg-[#F8FAFC]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-3 mb-8">
-            
+            <span class="w-10 h-1 rounded-full bg-[#E85D04]"></span>
+            <h2 class="text-2xl md:text-3xl font-bold text-[#1E3A8A]">Related Blogs</h2>
         </div>
+        <p class="text-gray-600 mb-8 -mt-4">Latest news and updates related to {{ $product->title }}.</p>
         <div class="grid md:grid-cols-3 gap-8">
             @foreach($relatedBlogs as $blog)
             <a href="{{ route('blog.show', $blog->slug) }}" class="group block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">

@@ -71,6 +71,14 @@
         <p class="mt-1 text-sm text-gray-500">One application per line; shown as bullet points on the product page</p>
     </div>
 
+    <div>
+        <label for="faqs_text" class="block text-sm font-medium text-gray-700 mb-2">FAQs (optional)</label>
+        <textarea name="faqs_text" id="faqs_text" rows="8"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1E3A8A] focus:border-transparent font-mono text-sm"
+            placeholder="One FAQ per line: question|answer&#10;Example: What sizes are available?|Contact us for the latest size chart.">{{ old('faqs_text') }}</textarea>
+        <p class="mt-1 text-sm text-gray-500">Shown in an accordion on the product detail page. If empty, default FAQs are used. Use <code class="text-xs bg-gray-100 px-1 rounded">|</code> once per line to separate question and answer.</p>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <label for="sort_order" class="block text-sm font-medium text-gray-700 mb-2">Sort Order</label>

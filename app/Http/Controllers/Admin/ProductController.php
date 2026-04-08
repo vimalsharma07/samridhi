@@ -33,6 +33,7 @@ class ProductController extends Controller
         $product->is_active = $request->boolean('is_active');
         $product->slug = $this->uniqueSlug($validated['title']);
         $product->applications = $this->parseApplications($request->input('applications_text'));
+        $product->faqs = $this->parseFaqs($request->input('faqs_text'));
 
         if ($request->hasFile('featured_image')) {
             $product->featured_image = $this->moveImage($request->file('featured_image'), 'products');
@@ -63,6 +64,7 @@ class ProductController extends Controller
         $product->is_active = $request->boolean('is_active');
         $product->slug = $this->uniqueSlug($validated['title'], $product->id);
         $product->applications = $this->parseApplications($request->input('applications_text'));
+        $product->faqs = $this->parseFaqs($request->input('faqs_text'));
 
         if ($request->hasFile('featured_image')) {
             $product->featured_image = $this->moveImage($request->file('featured_image'), 'products');
@@ -95,6 +97,7 @@ class ProductController extends Controller
             'description' => ['nullable', 'string'],
             'featured_image' => ['nullable', 'image', 'max:2048'],
             'applications_text' => ['nullable', 'string'],
+            'faqs_text' => ['nullable', 'string', 'max:20000'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable'],
         ];
@@ -112,6 +115,37 @@ class ProductController extends Controller
         }
         $lines = preg_split('/\r\n|\r|\n/', trim($text), -1, PREG_SPLIT_NO_EMPTY);
         return array_values(array_filter(array_map('trim', $lines)));
+    }
+
+    /**
+     * One FAQ per line: question|answer (pipe separates; answer may contain extra text).
+     *
+     * @return array<int, array{q: string, a: string}>|null null when empty
+     */
+    protected function parseFaqs(?string $text): ?array
+    {
+        if ($text === null || trim($text) === '') {
+            return null;
+        }
+        $lines = preg_split('/\r\n|\r|\n/', trim($text), -1, PREG_SPLIT_NO_EMPTY);
+        $out = [];
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '') {
+                continue;
+            }
+            $parts = explode('|', $line, 2);
+            if (count($parts) !== 2) {
+                continue;
+            }
+            $q = trim($parts[0]);
+            $a = trim($parts[1]);
+            if ($q !== '' && $a !== '') {
+                $out[] = ['q' => $q, 'a' => $a];
+            }
+        }
+
+        return count($out) > 0 ? $out : null;
     }
 
     protected function moveImage($file, string $folder): string
