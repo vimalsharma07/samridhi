@@ -1,33 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- Hero with breadcrumb --}}
-<section class="relative py-14 md:py-20 bg-gradient-to-br from-[#1E3A8A] via-[#1D3A8F] to-[#152a6b] text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-[#E85D04] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+{{-- banner-product-category.png — /products/{slug} (single product category) --}}
+<section class="relative min-h-[280px] md:min-h-[340px] flex items-center overflow-hidden text-white">
+    <div class="absolute inset-0 bg-[#1a1a1a]">
+        <img src="{{ asset('images/banner-product-category.png') }}" alt="Steel manufacturing" class="absolute inset-0 w-full h-full object-cover object-center" fetchpriority="high" decoding="async">
     </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex items-center gap-2 text-sm text-white/80 mb-6">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/82 via-black/55 to-black/25 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+        <nav class="flex flex-wrap items-center gap-2 text-sm text-white/85 mb-6 drop-shadow">
             <a href="{{ route('products') }}" class="hover:text-white transition-colors">Products</a>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             <span class="text-white font-medium">{{ $product->title }}</span>
         </nav>
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            <div>
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{{ $product->title }}</h1>
-                @if($product->tagline)
-                <p class="mt-4 text-lg md:text-xl text-white/90">{{ $product->tagline }}</p>
-                @elseif($product->short_description)
-                <p class="mt-4 text-lg text-white/90">{{ Str::limit($product->short_description, 200) }}</p>
-                @endif
-            </div>
-            @if($product->featured_image)
-            <div class="relative order-first lg:order-none">
-                <div class="rounded-2xl overflow-hidden shadow-2xl ring-2 ring-white/10">
-                    <img src="{{ asset('uploads/' . $product->featured_image) }}" alt="{{ $product->title }}"
-                        class="w-full h-auto object-cover max-h-80 lg:max-h-96">
-                </div>
-            </div>
+        <div class="max-w-3xl">
+            <p class="text-[#F48C06] font-bold uppercase tracking-[0.18em] text-xs sm:text-sm drop-shadow">Product category</p>
+            <h1 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">{{ $product->title }}</h1>
+            @if($product->tagline)
+            <p class="mt-4 text-lg md:text-xl text-white/95 drop-shadow-md">{{ $product->tagline }}</p>
+            @elseif($product->short_description)
+            <p class="mt-4 text-lg text-white/95 drop-shadow-md">{{ Str::limit($product->short_description, 220) }}</p>
             @endif
         </div>
     </div>

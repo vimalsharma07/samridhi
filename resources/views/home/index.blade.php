@@ -2,83 +2,121 @@
 
 @section('content')
 
-{{-- Hero Slider --}}
+{{-- Hero Slider (6 banners: hero-banner-1.png … hero-banner-6.png) --}}
 <section class="relative h-[90vh] min-h-[600px] overflow-hidden" id="hero">
-    {{-- Slide 1 --}}
+    {{-- Slide 1 — Steel structures / load-bearing strength --}}
     <div class="hero-slide active absolute inset-0 flex items-center"
-         style="background-image: url('{{ asset('images/heroslider1.jpeg') }}'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+         style="background-image: url('{{ asset('images/hero-banner-1.png') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-left">
-                    High <span class="text-[#F48C06]">Tensile</span> Strength in Every Pipe
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg opacity-0 animate-fade-in-left">
+                    Strong joints for <span class="text-[#F48C06]">every load</span>
                 </h1>
-                <p class="mt-6 text-xl text-white/90 opacity-0 animate-fade-in-left animation-delay-200">
-                    Engineered for Strength and Resilience. India's leading manufacturer of HR Pipes, GI Pipes, MS Pipes, and Billets.
+                <p class="mt-6 text-xl text-white/95 opacity-0 animate-fade-in-left animation-delay-200 drop-shadow-md">
+                    Galvanized steel engineered for infrastructure, fabrication and heavy-duty construction.
                 </p>
                 <div class="mt-10 flex flex-wrap gap-4 opacity-0 animate-fade-in-left animation-delay-300">
-                    <a href="{{ route('products') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Explore Products <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <a href="{{ route('products') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300 shadow-lg">
+                        Explore Products
                     </a>
-                    <a href="{{ route('contact') }}" class="inline-flex items-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/30 transition-all duration-300">
+                    <a href="{{ route('contact') }}" class="inline-flex items-center px-8 py-4 bg-white/15 hover:bg-white/25 text-white font-semibold rounded-lg border border-white/35 transition-all duration-300">
                         Dealer Enquiry
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    {{-- Slide 2 --}}
+    {{-- Slide 2 — Agriculture / irrigation collage --}}
     <div class="hero-slide absolute inset-0 flex items-center"
-         style="background-image: url('{{ asset('images/heroslider2.jpeg') }}'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+         style="background-image: url('{{ asset('images/hero-banner-2.png') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl ml-auto text-right">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-right">
-                    New Heights <span class="text-[#1E3A8A]">Modern</span> Builds
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg opacity-0 animate-fade-in-right">
+                    Strong pipes, <span class="text-[#F48C06]">healthy crops</span>
                 </h1>
-                <p class="mt-6 text-xl text-white/95 opacity-0 animate-fade-in-right animation-delay-200">
-                    Consistent Quality. Premium Finish. Unparalleled performance in agriculture, infrastructure & construction.
+                <p class="mt-6 text-xl text-white/95 opacity-0 animate-fade-in-right animation-delay-200 drop-shadow-md">
+                    Reliable irrigation and field solutions trusted by farmers across India.
                 </p>
                 <div class="mt-10 flex flex-wrap gap-4 justify-end opacity-0 animate-fade-in-right animation-delay-300">
-                    <a href="{{ route('about') }}" class="inline-flex items-center px-8 py-4 bg-[#1E3A8A] hover:bg-[#1D4ED8] text-white font-semibold rounded-lg transition-all duration-300">
-                        About Us
+                    <a href="{{ route('products') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
+                        View Products
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    {{-- Slide 3 --}}
+    {{-- Slide 3 — Welding / powering structures --}}
     <div class="hero-slide absolute inset-0 flex items-center"
-         style="background-image: url('{{ asset('images/heroslider3.jpeg') }}'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+         style="background-image: url('{{ asset('images/hero-banner-3.png') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-up">
-                Infrastructure <span class="text-[#F48C06]">Backbone</span> of Bharat
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg opacity-0 animate-fade-in-up">
+                Powering <span class="text-[#F48C06]">big structures</span>
             </h1>
-            <p class="mt-6 text-xl text-white/90 max-w-2xl mx-auto opacity-0 animate-fade-in-up animation-delay-200">
-                Contributing to strengthen the backbone of India's economy. 18+ years of precision engineering excellence.
+            <p class="mt-6 text-xl text-white/95 max-w-2xl mx-auto opacity-0 animate-fade-in-up animation-delay-200 drop-shadow-md">
+                Strength without limits — precision welding and quality steel for landmark projects.
             </p>
             <div class="mt-10 opacity-0 animate-fade-in-up animation-delay-300">
-                <a href="{{ route('clients') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
-                    Our Clients
+                <a href="{{ route('about') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
+                    About Samridhi
                 </a>
             </div>
         </div>
     </div>
-    {{-- Slide 4 --}}
+    {{-- Slide 4 — Lifestyle / durability (pergola, railings) --}}
     <div class="hero-slide absolute inset-0 flex items-center"
-         style="background-image: url('{{ asset('images/heroslider4.jpeg') }}'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+         style="background-image: url('{{ asset('images/hero-banner-4.png') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none" aria-hidden="true"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight opacity-0 animate-fade-in-up">
-                From Farms to <span class="text-[#F48C06]">Factories</span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg opacity-0 animate-fade-in-up">
+                Where durability meets <span class="text-[#F48C06]">perfection</span>
             </h1>
-            <p class="mt-6 text-xl text-white/90 max-w-2xl mx-auto opacity-0 animate-fade-in-up animation-delay-200">
-                Powering agriculture, industry, construction and utilities across India with quality steel solutions.
+            <p class="mt-6 text-xl text-white/95 max-w-2xl mx-auto opacity-0 animate-fade-in-up animation-delay-200 drop-shadow-md">
+                Pergolas, railings and outdoor solutions — engineered for life, built to last.
             </p>
             <div class="mt-10 opacity-0 animate-fade-in-up animation-delay-300">
                 <a href="{{ route('products') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
-                    Explore Products
+                    Explore Range
+                </a>
+            </div>
+        </div>
+    </div>
+    {{-- Slide 5 — Industrial / construction / utility collage --}}
+    <div class="hero-slide absolute inset-0 flex items-center"
+         style="background-image: url('{{ asset('images/hero-banner-5.png') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none" aria-hidden="true"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg opacity-0 animate-fade-in-left">
+                    From industry to <span class="text-[#F48C06]">utilities</span>
+                </h1>
+                <p class="mt-6 text-xl text-white/95 opacity-0 animate-fade-in-left animation-delay-200 drop-shadow-md">
+                    Construction, fabrication, industrial and utility applications — one trusted steel partner.
+                </p>
+                <div class="mt-10 flex flex-wrap gap-4 opacity-0 animate-fade-in-left animation-delay-300">
+                    <a href="{{ route('clients') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
+                        Our Clients
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Slide 6 — Irrigation hero / Samridhi field --}}
+    <div class="hero-slide absolute inset-0 flex items-center"
+         style="background-image: url('{{ asset('images/hero-banner-6.png') }}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none" aria-hidden="true"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg opacity-0 animate-fade-in-up">
+                Infrastructure <span class="text-[#F48C06]">backbone</span> of Bharat
+            </h1>
+            <p class="mt-6 text-xl text-white/95 max-w-2xl mx-auto opacity-0 animate-fade-in-up animation-delay-200 drop-shadow-md">
+                18+ years of precision engineering — HR, GI and MS pipes for agriculture, power and construction.
+            </p>
+            <div class="mt-10 opacity-0 animate-fade-in-up animation-delay-300">
+                <a href="{{ route('contact') }}" class="inline-flex items-center px-8 py-4 bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold rounded-lg transition-all duration-300">
+                    Enquire Now
                 </a>
             </div>
         </div>

@@ -1,10 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="py-20 bg-[#1E3A8A] text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl font-bold">{{ $page === 'dealers' ? 'Dealer Enquiry' : 'Contact Us' }}</h1>
-        <p class="mt-2 text-white/90">Get in touch with our team</p>
+{{-- banner-contact.png — /contact & dealer enquiry --}}
+<section class="relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] flex items-center overflow-hidden text-white">
+    <div class="absolute inset-0 bg-[#1a1a1a]">
+        <img src="{{ asset('images/banner-contact.png') }}" alt="Contact Samridhi Pipes" class="absolute inset-0 w-full h-full object-cover object-center" fetchpriority="high" decoding="async">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/78 via-black/48 to-black/30 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div class="max-w-3xl">
+            <p class="inline-flex items-center gap-2 text-[#F48C06] font-bold uppercase tracking-[0.2em] text-xs sm:text-sm drop-shadow">
+                <span class="w-8 h-0.5 bg-[#E85D04] rounded-full" aria-hidden="true"></span>
+                {{ $page === 'dealers' ? 'Partners' : 'We are here' }}
+            </p>
+            <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">{{ $page === 'dealers' ? 'Dealer Enquiry' : 'Contact Us' }}</h1>
+            <p class="mt-4 text-base sm:text-lg md:text-xl text-white/95 max-w-2xl drop-shadow-md border-l-4 border-[#E85D04]/90 pl-5">
+                Get in touch with our team — we respond to enquiries promptly.
+            </p>
+        </div>
     </div>
 </section>
 

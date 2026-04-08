@@ -1,17 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- Hero: gradient, animated --}}
-<section class="relative py-24 md:py-32 bg-gradient-to-br from-[#1E3A8A] via-[#1D3A8F] to-[#152a6b] text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-[#E85D04] rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-10 right-20 w-96 h-96 bg-[#F48C06] rounded-full blur-3xl animate-float" style="animation-delay: 1s;"></div>
+{{-- Hero: banner image + overlay (text left; artwork on right stays visible) --}}
+<section class="relative min-h-[320px] sm:min-h-[380px] md:min-h-[440px] flex items-center overflow-hidden text-white">
+    <div class="absolute inset-0 bg-[#1a1a1a]">
+        <img src="{{ asset('images/about-hero-banner.png') }}" alt="Samridhi Pipes — steel map of India and coil" class="absolute inset-0 w-full h-full object-cover object-center" fetchpriority="high" decoding="async">
     </div>
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-80"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-[#F48C06] font-semibold uppercase tracking-[0.2em] text-sm scroll-reveal">About Samridhi</p>
-        <h1 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold max-w-3xl scroll-reveal animation-delay-100">Build a Strong Future With Us</h1>
-        <p class="mt-6 text-lg md:text-xl text-white/90 max-w-2xl scroll-reveal animation-delay-200">Company Overview, Leadership, Vision & Mission, and Our Commitment to Excellence.</p>
+    {{-- Readability: darken left/center where copy sits; keep right side of artwork visible --}}
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#E85D04]/15 to-transparent pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+        <div class="max-w-2xl lg:max-w-[52%]">
+            <p class="inline-flex items-center gap-2 text-[#F48C06] font-bold uppercase tracking-[0.22em] text-xs sm:text-sm drop-shadow-md">
+                <span class="w-8 h-0.5 bg-[#E85D04] rounded-full" aria-hidden="true"></span>
+                About Samridhi
+            </p>
+            <h1 class="mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold leading-[1.15] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)]">
+                Build a Strong Future <span class="text-[#F48C06]">With Us</span>
+            </h1>
+            <p class="mt-6 text-base sm:text-lg md:text-xl text-white/95 leading-relaxed drop-shadow-md border-l-4 border-[#E85D04]/90 pl-5 sm:pl-6">
+                Company Overview, Leadership, Vision &amp; Mission, and Our Commitment to Excellence.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#overview" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#E85D04] hover:bg-[#D35400] text-white font-semibold text-sm shadow-lg shadow-black/20 transition-colors">
+                    Explore sections
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                </a>
+                <a href="{{ route('contact') }}" class="inline-flex items-center px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/25 text-white font-semibold text-sm transition-colors">
+                    Contact us
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
